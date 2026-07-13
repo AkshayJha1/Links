@@ -2,199 +2,201 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Institutional Portal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>St. Ann's Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <meta name="theme-color" content="#0a1128">
+    <meta name="theme-color" content="#0f172a">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
     <style>
-        /* Core System Reset */
+        /* Core Reset & School Color System extracted from logo and card */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             -webkit-tap-highlight-color: transparent;
         }
 
+        :root {
+            --primary-navy: #0f172a; /* Deep Navy from image_7.png */
+            --accent-cyan: #00f5ff;  /* Bright Cyan from image_7.png line accents */
+            --off-white: #f1f5f9;
+            --text-dark: #cbd5e1;
+            --glass-bg: rgba(15, 23, 42, 0.7);
+        }
+
         body {
-            background-color: #0a1128; /* Premium Deep Navy Matching the Card */
+            background-color: var(--primary-navy);
             min-height: 100vh;
-            color: #f8fafc;
-            overflow: hidden;
+            overflow: hidden; /* Prevents initial background body scrolling */
             position: relative;
+            color: var(--off-white);
             display: flex;
             justify-content: center;
             align-items: center;
         }
 
-        /* Ambient Fluid Background Elements inspired by the physical card artwork */
-        .brand-curve-left {
+        /* Ambient Dark Matrix with specific color glow */
+        .bg-glow {
             position: absolute;
-            top: -10%;
-            left: -40%;
-            width: 80%;
-            height: 60%;
-            background: radial-gradient(circle, rgba(0, 180, 216, 0.08) 0%, rgba(0,0,0,0) 70%);
-            border-right: 2px solid rgba(0, 180, 216, 0.1);
-            border-radius: 50%;
+            top: 15%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 245, 255, 0.12) 0%, rgba(0,0,0,0) 70%);
             z-index: 1;
-            transform: rotate(-15deg);
         }
 
-        .brand-curve-right {
-            position: absolute;
-            bottom: -20%;
-            right: -30%;
-            width: 70%;
-            height: 50%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.03) 0%, rgba(0,0,0,0) 70%);
-            border-left: 2px solid rgba(0, 180, 216, 0.15);
-            border-radius: 50%;
-            z-index: 1;
-            transform: rotate(25deg);
-        }
-
-        /* 100% Full Screen Modern Panel Matrix */
-        .portal-main {
+        /* Full Screen Native-like Card Matrix */
+        .connect-portal {
             width: 100%;
             max-width: 420px;
             height: 100vh;
-            padding: 40px 24px;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, rgba(10, 17, 40, 1) 100%);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border-top: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 32px 32px 0 0;
+            padding: 24px 24px 40px 24px;
+            text-align: center;
+            box-shadow: 0 -15px 35px rgba(0, 0, 0, 0.5);
+            z-index: 10;
+            
+            /* Enhanced Card Insertion Animation */
+            transform: translateY(100%) translateX(-50%); /* Anchor to bottom center */
+            left: 50%;
+            position: absolute;
+            bottom: 0;
+
+            /* Strong 'locking-in' effect with bounce at the peak */
+            animation: cardInsertion 0.75s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+            animation-delay: 0.15s; /* Small delay to register app entry */
+            
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            z-index: 10;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: appReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
 
-        /* Header Identity Styling */
-        .header-block {
-            text-align: center;
-            margin-top: 15px;
+        /* App-like Drag Indicator Handle */
+        .drag-handle {
+            width: 40px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            margin: 0 auto 24px auto;
+            flex-shrink: 0;
         }
 
-        /* Clean Modern Minimal Crest Replacement Graphic */
-        .crest-wrapper {
-            width: 72px;
-            height: 72px;
-            background: #ffffff;
-            border-radius: 20px;
-            margin: 0 auto 16px auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.4), 0 0 0 3px rgba(0, 180, 216, 0.6);
+        .scrollable-content {
+            overflow-y: auto;
+            flex-grow: 1;
+            padding-bottom: 20px;
         }
 
-        .crest-wrapper i {
-            font-size: 2rem;
-            color: #0a1128;
+        /* Profile Elements tailored for institution branding */
+        .profile-img {
+            width: 88px;
+            height: 88px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            margin-bottom: 14px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3), 0 0 0 3px var(--accent-cyan);
         }
 
         h1 {
-            font-size: 1.4rem;
-            font-weight: 700;
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--off-white);
+            margin-bottom: 4px;
             letter-spacing: -0.5px;
             text-transform: uppercase;
-            color: #ffffff;
-            margin-bottom: 6px;
-        }
-
-        .divider-line {
-            width: 40px;
-            height: 3px;
-            background: #00b4d8; /* Bright Cyan Accent from Card */
-            margin: 8px auto;
-            border-radius: 2px;
         }
 
         .subtitle {
-            font-size: 0.82rem;
-            color: #94a3b8;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            margin-bottom: 28px;
             font-weight: 500;
-            letter-spacing: 0.5px;
         }
 
-        /* Core Action Links Architecture */
-        .links-area {
+        /* Functional Links Stack */
+        .links-stack {
             display: flex;
             flex-direction: column;
             gap: 14px;
-            margin: auto 0;
         }
 
-        .action-card {
+        .link-card {
             display: flex;
             align-items: center;
             padding: 16px 20px;
             background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 18px;
             text-decoration: none;
-            color: #e2e8f0;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            color: var(--off-white);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .action-card i {
+        .link-card i {
             font-size: 1.25rem;
-            width: 32px;
+            width: 28px;
             text-align: left;
-            transition: transform 0.2s ease;
         }
+        
+        /* Functional Component Icons Mapping */
+        .fa-phone-flip { color: var(--accent-cyan); }         /* Main Call */
+        .fa-phone-volume { color: #60a5fa; }         /* Alternate Call */
+        .fa-file-pdf { color: #4ade80; }             /* Brochure */
+        .fa-map-location-dot { color: #f87171; }     /* Maps */
 
-        /* Clean Functional Component Coloring mapping */
-        .fa-phone-flip { color: #00b4d8; }            /* Cyan Accent */
-        .fa-phone-volume { color: #38bdf8; }          /* Subtle Blue Accent */
-        .fa-file-invoice { color: #34d399; }          /* Emerald Tech Accent */
-        .fa-map-location-dot { color: #f87171; }      /* Light Coral Accent */
-
-        .label-text {
+        .link-text {
             flex-grow: 1;
+            text-align: left;
             font-size: 0.92rem;
             font-weight: 600;
-            letter-spacing: -0.2px;
+            padding-left: 8px;
         }
 
-        .chevron {
+        .arrow-icon {
             font-size: 0.75rem !important;
-            color: #475569;
-            text-align: right !important;
-            width: auto !important;
+            color: #64748b;
         }
 
-        /* Hover & Tap State Responses */
-        .action-card:hover {
-            background: rgba(255, 255, 255, 0.06);
-            border-color: rgba(0, 180, 216, 0.3);
-            transform: translateX(3px);
+        .link-card:active {
+            transform: scale(0.97);
+            background: rgba(255, 255, 255, 0.07);
         }
 
-        .action-card:active {
-            transform: scale(0.98);
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        /* Premium Social Floating Strip Layout */
-        .social-row {
+        /* Visually Floating Social Media Strip */
+        .social-strip {
+            position: absolute;
+            bottom: 70px; /* REALIGNED HIGHER: Shifts icons upward to avoid overlap with phone navigation bar */
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
             justify-content: center;
-            gap: 24px;
-            padding-top: 10px;
-            margin-bottom: 10px;
+            align-items: center;
+            gap: 32px;
+            width: 100%;
+            z-index: 15;
+            flex-shrink: 0;
+            animation: appPopup 0.5s ease forwards;
+            animation-delay: 0.6s; /* Appear after the main card insertion */
+            opacity: 0;
         }
 
-        .social-btn {
-            width: 50px;
-            height: 50px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.06);
-            border-radius: 16px;
+        .social-icon-btn {
+            width: 52px;
+            height: 52px;
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.07);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -202,99 +204,111 @@
             transition: all 0.2s ease;
         }
 
-        .social-btn i {
-            font-size: 1.35rem;
+        .social-icon-btn i {
+            font-size: 1.4rem;
         }
 
-        /* Native Identity Colors for Social Brandings */
+        /* Branding Colors tailored for specific logos */
         .fa-instagram { color: #e1306c; }
         .fa-facebook { color: #1877f2; }
         .fa-youtube { color: #ff0000; }
 
-        .social-btn:hover {
-            background: rgba(255, 255, 255, 0.07);
+        .social-icon-btn:hover {
+            background: rgba(255, 255, 255, 0.1);
             transform: translateY(-3px);
         }
 
-        .social-btn:active {
+        .social-icon-btn:active {
             transform: scale(0.92);
         }
 
-        /* Reveal Animation Rules */
-        @keyframes appReveal {
+        /* Advanced Card Insertion Animation Definition */
+        @keyframes cardInsertion {
+            from {
+                transform: translateY(100%) translateX(-50%) scale(1);
+                opacity: 0;
+            }
+            70% {
+                transform: translateY(-5%) translateX(-50%) scale(1.02); /* Slight overshoot for bounce */
+                opacity: 1;
+            }
+            to {
+                transform: translateY(0%) translateX(-50%) scale(1); /* Lock into position */
+                opacity: 1;
+            }
+        }
+
+        /* Gentle popup for social strip */
+        @keyframes appPopup {
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) translateX(-50%);
             }
         }
     </style>
 </head>
 <body>
 
-    <div class="brand-curve-left"></div>
-    <div class="brand-curve-right"></div>
+    <div class="bg-glow"></div>
 
-    <div class="portal-main">
+    <div class="connect-portal">
+        <div class="drag-handle"></div>
         
-        <div class="header-block">
-            <div class="crest-wrapper">
-                <i class="fa-solid fa-book-open-reader"></i>
-            </div>
-            <h1>High School</h1>
-            <div class="divider-line"></div>
-            <p class="subtitle">DIGITAL CONNECT PORTAL</p>
-        </div>
-
-        <div class="links-area">
+        <div class="scrollable-content">
+            <img src="https://yourwebsite.com/school-crest-emblem.png" alt="St. Ann's Crest" class="profile-img">
             
-            <a href="tel:+918092285112" class="action-card">
-                <i class="fa-solid fa-phone-flip"></i>
-                <span class="label-text">Main Office Line</span>
-                <i class="fa-solid fa-chevron-right chevron"></i>
-            </a>
+            <h1>ST. ANN'S HIGH SCHOOL</h1>
+            <p class="subtitle">Admissions, Communication & Support Hub</p>
 
-            <a href="tel:+91XXXXXXXXXX" class="action-card">
-                <i class="fa-solid fa-phone-volume"></i>
-                <span class="label-text">Alternate Contact Line</span>
-                <i class="fa-solid fa-chevron-right chevron"></i>
-            </a>
+            <div class="links-stack">
+                <a href="tel:+918092285112" class="link-card">
+                    <i class="fa-solid fa-phone-flip"></i>
+                    <span class="link-text">Contact Main Office</span>
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                </a>
 
-            <a href="https://drive.google.com/file/d/your-shared-fee-pdf-link/view" target="_blank" class="action-card">
-                <i class="fa-solid fa-file-invoice"></i>
-                <span class="label-text">Admission Brochure & Fee Structure</span>
-                <i class="fa-solid fa-chevron-right chevron"></i>
-            </a>
+                <a href="tel:+91XXXXXXXXXX" class="link-card">
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <span class="link-text">Admissions & Support Line</span>
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                </a>
 
-            <a href="https://www.google.com/maps/search/?api=1&query=25.591278,85.145679" target="_blank" class="action-card">
-                <i class="fa-solid fa-map-location-dot"></i>
-                <span class="label-text">Campus Location (Open Maps)</span>
-                <i class="fa-solid fa-chevron-right chevron"></i>
-            </a>
+                <a href="https://drive.google.com/file/d/your-shared-fee-pdf-link/view" target="_blank" class="link-card">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span class="link-text">Admissions Brochure & Fee Structure</span>
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                </a>
 
+                <a href="https://www.google.com/maps/search/?api=1&query=25.591278,85.145679" target="_blank" class="link-card">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <span class="link-text">Campus Location (Open Maps)</span>
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                </a>
+            </div>
         </div>
 
-        <div class="social-row">
-            <a href="https://instagram.com/yourusername" target="_blank" class="social-btn" aria-label="Instagram">
+        <div class="social-strip">
+            <a href="https://instagram.com/yourusername" target="_blank" class="social-icon-btn" aria-label="Instagram Feed">
                 <i class="fa-brands fa-instagram"></i>
             </a>
-            <a href="https://facebook.com/yourusername" target="_blank" class="social-btn" aria-label="Facebook">
+            <a href="https://facebook.com/yourusername" target="_blank" class="social-icon-btn" aria-label="Facebook Page">
                 <i class="fa-brands fa-facebook"></i>
             </a>
-            <a href="https://youtube.com/@yourusername" target="_blank" class="social-btn" aria-label="YouTube">
+            <a href="https://youtube.com/@yourusername" target="_blank" class="social-icon-btn" aria-label="YouTube Channel">
                 <i class="fa-brands fa-youtube"></i>
             </a>
         </div>
-
     </div>
 
     <script>
-        const CACHE_NAME = 'inst-portal-v1';
+        const CACHE_NAME = 'school-portal-v3';
         const ASSETS = [
             window.location.pathname,
             window.location.href,
             'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css'
         ];
 
+        // Register Service Worker inline
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 const blob = new Blob([`
@@ -306,7 +320,7 @@
                     });
                 `], { type: 'application/javascript' });
                 const workerUrl = URL.createObjectURL(blob);
-                navigator.serviceWorker.register(workerUrl).catch(err => {});
+                navigator.serviceWorker.register(workerUrl).catch(err => console.log('SW registration skipped'));
             });
         }
     </script>
