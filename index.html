@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Connect With Me</title>
+    <title>School Information Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <meta name="theme-color" content="#0f172a">
@@ -21,13 +21,13 @@
         }
 
         body {
-            background-color: #0f172a; /* Solid deep base color */
+            background-color: #0f172a; 
             min-height: 100vh;
-            overflow: hidden; /* Prevents background body scrolling */
+            overflow: hidden; 
             position: relative;
         }
 
-        /* Ambient Dark Blurred Background Matrix */
+        /* Ambient Academic Light Effect */
         .bg-glow {
             position: absolute;
             top: 20%;
@@ -35,42 +35,39 @@
             transform: translate(-50%, -50%);
             width: 300px;
             height: 300px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, rgba(0,0,0,0) 70%);
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.12) 0%, rgba(0,0,0,0) 70%);
             z-index: 1;
         }
 
-        /* The 75% Native Bottom Sheet */
+        /* The 75% Institutional Bottom Sheet */
         .bottom-sheet {
             position: fixed;
             bottom: 0;
             left: 0;
             width: 100%;
-            height: 75vh; /* Covers exactly 75% of the screen */
-            background: rgba(30, 41, 59, 0.75);
+            height: 75vh; 
+            background: linear-gradient(180deg, rgba(30, 41, 59, 0.85) 0%, rgba(15, 23, 42, 0.95) 100%);
             backdrop-filter: blur(25px);
             -webkit-backdrop-filter: blur(25px);
             border-top: 1px solid rgba(255, 255, 255, 0.12);
             border-radius: 32px 32px 0 0;
             padding: 16px 24px 40px 24px;
             text-align: center;
-            box-shadow: 0 -15px 35px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 -15px 35px rgba(0, 0, 0, 0.5);
             z-index: 10;
             
-            /* The Slide-Up Animation mechanics */
             transform: translateY(100%);
             animation: slideUp 0.65s cubic-bezier(0.175, 0.885, 0.32, 1.1) forwards;
-            animation-delay: 0.2s; /* Tiny delay so the screen registers the app entry first */
+            animation-delay: 0.1s;
             
-            /* Allow scrolling inside the card stack if text overflows small screens */
             display: flex;
             flex-direction: column;
         }
 
-        /* Native App Drag Indicator Handle Bar */
         .drag-handle {
             width: 40px;
             height: 5px;
-            background: rgba(255, 255, 255, 0.25);
+            background: rgba(255, 255, 255, 0.2);
             border-radius: 10px;
             margin: 0 auto 24px auto;
             flex-shrink: 0;
@@ -82,32 +79,31 @@
             padding-bottom: 20px;
         }
 
-        /* Profile Elements */
         .profile-img {
-            width: 88px;
-            height: 88px;
+            width: 84px;
+            height: 84px;
             border-radius: 50%;
             object-fit: cover;
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.15);
             margin-bottom: 14px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
         }
 
         h1 {
-            font-size: 1.35rem;
+            font-size: 1.3rem;
             font-weight: 600;
             color: #f8fafc;
             margin-bottom: 4px;
-            letter-spacing: -0.5px;
+            letter-spacing: -0.3px;
         }
 
         .subtitle {
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             color: #94a3b8;
             margin-bottom: 24px;
         }
 
-        /* Links Stack */
+        /* Links Stack Styling */
         .links-stack {
             display: flex;
             flex-direction: column;
@@ -118,7 +114,7 @@
             display: flex;
             align-items: center;
             padding: 15px 18px;
-            background: rgba(255, 255, 255, 0.04);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 16px;
             text-decoration: none;
@@ -127,36 +123,37 @@
         }
 
         .link-card i {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             width: 28px;
             text-align: left;
         }
         
-        .fa-phone { color: #38bdf8; }
-        .fa-linkedin { color: #0077b5; }
-        .fa-instagram { color: #e1306c; }
-        .fa-youtube { color: #ff0000; }
-        .fa-file-invoice-dollar { color: #4ade80; }
+        /* Themed Color Mapping for Icons */
+        .fa-phone-flip { color: #38bdf8; }            /* Main Call */
+        .fa-phone-volume { color: #60a5fa; }          /* Alternate Call */
+        .fa-file-pdf { color: #f87171; }              /* Fee Brochure */
+        .fa-instagram { color: #f472b6; }             /* Instagram */
+        .fa-facebook { color: #3b82f6; }              /* Facebook */
+        .fa-youtube { color: #ef4444; }               /* YouTube */
 
         .link-text {
             flex-grow: 1;
             text-align: left;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             font-weight: 500;
             padding-left: 8px;
         }
 
         .arrow-icon {
             font-size: 0.75rem !important;
-            color: #64748b;
+            color: #475569;
         }
 
         .link-card:active {
             transform: scale(0.98);
-            background: rgba(255, 255, 255, 0.08);
+            background: rgba(255, 255, 255, 0.07);
         }
 
-        /* Slide-Up Animation Definition */
         @keyframes slideUp {
             from { transform: translateY(100%); }
             to { transform: translateY(0); }
@@ -171,39 +168,45 @@
         <div class="drag-handle"></div>
         
         <div class="scrollable-content">
-            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&auto=format&fit=crop&q=80" alt="Profile" class="profile-img">
+            <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?w=200&auto=format&fit=crop&q=80" alt="School Crest" class="profile-img">
             
-            <h1>Your Name</h1>
-            <p class="subtitle">Founder & Entrepreneur</p>
+            <h1>School Name Here</h1>
+            <p class="subtitle">Information & Communication Hub</p>
 
             <div class="links-stack">
                 <a href="tel:+918092285112" class="link-card">
-                    <i class="fa-solid fa-phone"></i>
-                    <span class="link-text">Call +91 8092285112</span>
+                    <i class="fa-solid fa-phone-flip"></i>
+                    <span class="link-text">Call Main Office (+91 8092285112)</span>
                     <i class="fa-solid fa-chevron-right arrow-icon"></i>
                 </a>
 
-                <a href="https://linkedin.com/in/yourusername" target="_blank" class="link-card">
-                    <i class="fa-brands fa-linkedin"></i>
-                    <span class="link-text">Connect on LinkedIn</span>
+                <a href="tel:+91XXXXXXXXXX" class="link-card">
+                    <i class="fa-solid fa-phone-volume"></i>
+                    <span class="link-text">Alternate Support Line</span>
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                </a>
+
+                <a href="https://drive.google.com/file/d/your-shared-fee-pdf-link/view" target="_blank" class="link-card">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span class="link-text">Admission Brochure & Fee Structure</span>
                     <i class="fa-solid fa-chevron-right arrow-icon"></i>
                 </a>
 
                 <a href="https://instagram.com/yourusername" target="_blank" class="link-card">
                     <i class="fa-brands fa-instagram"></i>
-                    <span class="link-text">Follow on Instagram</span>
+                    <span class="link-text">Official Instagram Feed</span>
+                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
+                </a>
+
+                <a href="https://facebook.com/yourusername" target="_blank" class="link-card">
+                    <i class="fa-brands fa-facebook"></i>
+                    <span class="link-text">Facebook Community Page</span>
                     <i class="fa-solid fa-chevron-right arrow-icon"></i>
                 </a>
 
                 <a href="https://youtube.com/@yourusername" target="_blank" class="link-card">
                     <i class="fa-brands fa-youtube"></i>
-                    <span class="link-text">Watch on YouTube</span>
-                    <i class="fa-solid fa-chevron-right arrow-icon"></i>
-                </a>
-
-                <a href="https://drive.google.com/file/d/your-shared-pdf-link/view" target="_blank" class="link-card">
-                    <i class="fa-solid fa-file-invoice-dollar"></i>
-                    <span class="link-text">View Catalog & Pricing</span>
+                    <span class="link-text">Event Highlights on YouTube</span>
                     <i class="fa-solid fa-chevron-right arrow-icon"></i>
                 </a>
             </div>
@@ -211,7 +214,7 @@
     </div>
 
     <script>
-        const CACHE_NAME = 'bio-links-v2';
+        const CACHE_NAME = 'school-links-v1';
         const ASSETS = [
             window.location.pathname,
             window.location.href,
